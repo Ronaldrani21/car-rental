@@ -1,0 +1,121 @@
+package carrental;
+
+/**
+ *
+ * @author AMPEIRE RONALD
+ */
+public class carrental {
+
+    //creating a class Vehicle
+    public class Vehicle{
+        String Color = "white";
+       
+        public String getColor(){
+            return Color;
+        }
+        public String toString(){//method returns a string
+            return "This vehicle is "+Color;  
+       }
+    }
+   
+    public static class Car extends Vehicle{//a class Car that extends the class Vehicle
+        boolean wintertires = false;
+        //overriding the toString() method  
+        public String toString(){ 
+            return "This vehicle is "+Color+", and has winter tires: "+wintertires;  
+       }
+    }
+    public static class Truck extends Vehicle{//a class Truck that extends the class Vehicle
+       boolean hastrailer = false;
+       //overriding the toString() method  
+        public String toString(){  
+           return "This vehicle is "+Color+", has trailer: "+hastrailer;  
+        }
+    }
+    public static class Garage{
+        Vehicle n = new Car();
+        Vehicle k = new Truck();
+       
+       
+        public String setVehicle(Vehicle parked){
+           return parked.toString();
+           //n.toString();          
+        }
+        public String toString(){//overriding the toString() method  
+           return k.toString()+n.toString();  
+        }
+    }
+   
+    public static class GarageTester{
+       
+        public String getExample(){
+            Truck benz = new Truck();
+            benz.Color = "black";
+            benz.hastrailer = false;
+           
+            Garage BnG = new Garage();
+            return BnG.setVehicle(benz);
+        }
+    }
+    public static class Customer{
+       
+        String Customername = "Ronald";
+        String Customeraddress = "Mbarara";
+   
+    }
+   
+    public static class CarRentalContract{
+        Customer AR = new Customer();
+        Vehicle xmx = new Car();
+       
+        CarRentalContract(String name,String address){
+            AR.Customername = name;
+            AR.Customeraddress = address;
+        }
+       
+       
+        public String toString(){//overriding the toString() method  
+           return AR.Customername+" : "+xmx.toString();  
+        }
+    }
+    public static class CarRental{
+        String carArray[] = new String[25];
+       
+        void addContract(CarRentalContract c1){
+            for(int x=0; x<carArray.length; x++){
+                carArray[x] = c1.toString();
+            }
+        }
+       
+        String displayContracts(){
+           
+            for (String y : carArray){
+               
+                return y;
+            }
+           
+            return "There are no contracts for CarRental";
+        }
+    }
+   
+    public static void main(String[] args) {
+       
+        //testcases
+        CarRentalContract c2 = new CarRentalContract("Kyle Walker"," Kampala");    
+        CarRental v8 = new CarRental();
+        v8.addContract(c2);
+        System.out.println("CarRental Contract:"+v8.displayContracts());
+        
+        Car toyota = new Car();
+        System.out.println("Toyota Car: "+toyota.toString());
+       
+        Truck Nisan = new Truck();
+        System.out.println("Nisan truck: "+Nisan.toString());
+       
+        GarageTester BnG = new GarageTester();
+        System.out.println("BnG Garage Tester: "+BnG.getExample());
+         
+  
+    }
+   
+}
