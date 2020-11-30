@@ -7,79 +7,121 @@ package carrental;
 public class carrental {
 
     //creating a class Vehicle
-    public class Vehicle{
-        String Color = "white";
-       
-        public String getColor(){
-            return Color;
-        }
-        public String toString(){//method returns a string
-            return "This vehicle is "+Color;  
-       }
-    }
    
-    public static class Car extends Vehicle{//a class Car that extends the class Vehicle
-        boolean wintertires = false;
-        //overriding the toString() method  
-        public String toString(){ 
-            return "This vehicle is "+Color+", and has winter tires: "+wintertires;  
-       }
+public static class Vehicle {
+    String color="white";
+    
+    String getcolor(String col){
+        
+        return col;
     }
-    public static class Truck extends Vehicle{//a class Truck that extends the class Vehicle
-       boolean hastrailer = false;
-       //overriding the toString() method  
-        public String toString(){  
-           return "This vehicle is "+Color+", has trailer: "+hastrailer;  
+
+public String toString(){//overriding the toString() method
+
+        return "This vehicle is "+getcolor(color);
+
+}
+}
+
+//write a car class
+
+public static class Car extends Vehicle{
+        
+       boolean wintertires = false;
+
+    
+        Car(String col, boolean hastires){
+            
+         this.color = col; 
+         
+        this.wintertires = hastires;
+        
         }
+        
+         public String toString(){ //overriding the toString() method
+             
+            return "This vehicle is "+getcolor(color)+",has winter tires: "+wintertires;  
     }
-    public static class Garage{
-        Vehicle n = new Car();
-        Vehicle k = new Truck();
-       
-       
-        public String setVehicle(Vehicle parked){
+    
+    }
+
+//write a truck class
+
+public static class Truck extends Vehicle{
+    
+    boolean wintertires = false;
+    
+        Truck(String col, boolean hastrailor){
+            
+         this.color = col; 
+         
+        this.wintertires = hastrailor;
+        
+        }
+        
+      public String toString(){//overriding the toString() method 
+             
+            return "This vehicle is "+getcolor(color)+",has Trailor: "+wintertires;  
+    }
+    
+    }
+        
+        //garage class
+        
+public static class Garage {
+     Vehicle spacio = new Car("Grey", true);
+     Vehicle tata = new Truck("white",true);
+        
+           public String setVehicle(Vehicle parked){
+               
            return parked.toString();
-           //n.toString();          
+    
+           }
+           public String toString(){//overriding the toString() method  
+           return tata.toString()+spacio.toString();  
         }
-        public String toString(){//overriding the toString() method  
-           return k.toString()+n.toString();  
-        }
-    }
-   
-    public static class GarageTester{
-       
-        public String getExample(){
-            Truck benz = new Truck();
-            benz.Color = "black";
-            benz.hastrailer = false;
-           
+}
+
+//Garage tester class
+
+public static class GarageTester {
+    public String getExample(){
+            Truck tata = new Truck("black",false);
+            
             Garage BnG = new Garage();
-            return BnG.setVehicle(benz);
-        }
-    }
-    public static class Customer{
-       
-        String Customername = "Ronald";
-        String Customeraddress = "Mbarara";
-   
-    }
-   
-    public static class CarRentalContract{
-        Customer AR = new Customer();
-        Vehicle xmx = new Car();
+            return BnG.setVehicle(tata);
+}
+}
+
+//customer class
+
+public static class Customer {
+     String Customername = "Ronald";
+     String Customeraddress = "Mbarara";
+}
+
+//CarRentalContractClass
+
+public static class CarRentalContract {
+      Customer Rani = new Customer();
+        Vehicle prado = new Car("brown",true);
        
         CarRentalContract(String name,String address){
-            AR.Customername = name;
-            AR.Customeraddress = address;
+            Rani.Customername = name;
+            Rani.Customeraddress = address;
         }
        
        
         public String toString(){//overriding the toString() method  
-           return AR.Customername+" : "+xmx.toString();  
+           return Rani.Customername+" : "+prado.toString();  
         }
-    }
-    public static class CarRental{
-        String carArray[] = new String[25];
+    
+}
+
+//CarRental class
+
+public static class CarRental {
+            String carArray[] = new String[25];
        
         void addContract(CarRentalContract c1){
             for(int x=0; x<carArray.length; x++){
@@ -96,26 +138,32 @@ public class carrental {
            
             return "There are no contracts for CarRental";
         }
-    }
-   
-    public static void main(String[] args) {
-       
-        //testcases
-        CarRentalContract c2 = new CarRentalContract("Kyle Walker"," Kampala");    
-        CarRental v8 = new CarRental();
-        v8.addContract(c2);
-        System.out.println("CarRental Contract:"+v8.displayContracts());
+}
+
+//testcases
+
+public static class Testcases {
+    
+     public static void main(String[] args) {
         
-        Car toyota = new Car();
-        System.out.println("Toyota Car: "+toyota.toString());
+       Vehicle benz = new Car("blue",false);
        
-        Truck Nisan = new Truck();
-        System.out.println("Nisan truck: "+Nisan.toString());
+       Vehicle Scania = new Truck("black",false);
+       
        
         GarageTester BnG = new GarageTester();
-        System.out.println("BnG Garage Tester: "+BnG.getExample());
-         
-  
+       
+        CarRentalContract c2 = new CarRentalContract("Ronald Rani"," Kampala");    
+        CarRental v8 = new CarRental();
+        v8.addContract(c2);
+        
+       System.out.println(benz.toString());
+       System.out.println(Scania.toString()); 
+       System.out.println("BnG Garage Tester: "+BnG.getExample()); 
+       System.out.println("CarRental Contract:"+v8.displayContracts());     
+        
     }
-   
+    
 }
+}
+
