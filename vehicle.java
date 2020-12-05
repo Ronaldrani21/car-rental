@@ -1,20 +1,16 @@
 
-public class Car extends Vehicle{
-        
-       boolean wintertires = false;
 
+public class Vehicle {
+    String color="white";
     
-        Car(String col, boolean hastires){
-            
-         this.color = col; 
-         
-        this.wintertires = hastires;
+    String getcolor(String col){
         
-        }
-        
-         public String toString(){ 
-             
-            return "This vehicle is "+getcolor(color)+",has winter tires: "+wintertires;  
+        return col;
     }
-    
-    }
+
+public String toString(){
+
+        return "This vehicle is "+getcolor(color);
+
+}
+}
